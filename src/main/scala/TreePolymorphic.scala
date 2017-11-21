@@ -1,14 +1,16 @@
-sealed trait Treep {
+package com.drew.polymorphic
+
+sealed trait Tree {
   def sum: Int
-  def double: Treep
+  def double: Tree
 }
 
-final case class Leafp(el: Int) extends Treep {
+final case class Leaf(el: Int) extends Tree {
   def sum = this.el
-  def double = Leafp(2*this.el)
+  def double = Leaf(2*this.el)
 }
 
-final case class Nodep(l: Treep, r: Treep) extends Treep {
+final case class Node(l: Tree, r: Tree) extends Tree {
   def sum = l.sum + r.sum
-  def double = Nodep(l.double, r.double)
+  def double = Node(l.double, r.double)
 }
